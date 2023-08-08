@@ -4,6 +4,7 @@ import Login from './component/login';
 import Signup from './component/signup';
 import Landing from './component/landing';
 import Products from './component/products';
+import Home from './component/Home';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,11 +21,12 @@ function App() {
             {/* <Route index element={<Login />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/home" element={<Landing />} />
+            <Route path="/landing" element={<Landing />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/home" element={<Home />} />
             {/* <ProtectRoute path="/home"   component={<Landing />} />
             <ProtectRoute path="/products" component={<Products />} /> */}
-            <Route  path="/" element={<Login />} />
+            <Route  path="/" element={<Home />} />
           </Routes>
         </Router>
         <ToastContainer />  

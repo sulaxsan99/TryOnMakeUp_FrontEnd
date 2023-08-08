@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage } from "mdb-react-ui-kit";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-
+import lipstic from './assests/LIPSTICK.PNG'
 
 
 function Landing() {
@@ -14,7 +14,9 @@ function Landing() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectImage, setSelectImage] = useState(null);
     const [result, setResult] = useState(null)
-
+    const [lipstick1, setlipstick1] = useState(null);
+    const [lipstick2, setlipstick2] = useState(null);
+    const [lipstick3, setlipstick3] = useState(null);
 
 
     useEffect(() => {
@@ -59,30 +61,30 @@ function Landing() {
         try {
             const formData = new FormData();
             formData.append('file', selectImage);
-            const response = await axios.post('http://f736-35-197-93-16.ngrok.io/makeup', formData)
+            const response = await axios.post('http://0373-34-70-204-233.ngrok.io/makeup', formData, { responseType: 'blob', })
+
             const blob = new Blob([response.data], { type: 'image/jpeg' });
             const imageUrl = URL.createObjectURL(blob);
             setResult(imageUrl)
 
+
+
+            const re = await axios.post('http://0373-34-70-204-233.ngrok.io/makeup2', formData)
+            console.log("respons reee----", re);
+
+
+            const lipg = `rgb(${re.data.lipr1},${re.data.lipg1},${re.data.lipb1})`;
+            const lipb = `rgb(${re.data.lipr2},${re.data.lipg2},${re.data.lipb2})`;
+            const lipr = `rgb(${re.data.lipr3},${re.data.lipg3},${re.data.lipb3})`;
+            setlipstick1(lipg)
+            setlipstick2(lipb)
+            setlipstick3(lipr)
+            // console.log(lip)
         } catch (error) {
             console.log(error)
         }
     }
-    const isBase64 = (str) => {
-        try {
-            return btoa(atob(str)) === str;
-        } catch (err) {
-            return false;
-        }
-    };
-    const normalizeBase64Data = (data) => {
-        const base64Prefix = 'data:image/jpeg;base64,';
-        if (data.startsWith(base64Prefix)) {
-            return data.slice(base64Prefix.length);
-        } else {
-            return data;
-        }
-    };
+
     return (
 
         <MDBContainer fluid >
@@ -120,12 +122,12 @@ function Landing() {
                         <div>
                             <div className="frame ">
                                 <div className="center card  shadow" style={{ minHeight: '308px' }} >
-                                    <div className="title m-5">
+                                    <div className="title m-2">
                                         {selectedImage && (
                                             <img
                                                 src={selectedImage}
                                                 alt="Preview"
-                                                style={{ maxWidth: '400px', maxHeight: '500px' }}
+                                                style={{ maxWidth: '100%', maxHeight: '500px' }}
                                             />
                                         )}
                                     </div>
@@ -163,9 +165,7 @@ function Landing() {
                                 <div className="center card p-5  m-1 shadow">
                                     <div className="title m-5 pb-5">
                                         <h1>View Processed Image</h1>
-                                        {
-                                            console.log(result)
-                                        }
+
                                         {result && (
                                             <img
                                                 // src={`data:image/jpeg;base64,${result}`}
@@ -189,20 +189,36 @@ function Landing() {
                 <MDBCol md="12" lg="6" className="mb-5 " >
                     <MDBCard className='shadow'>
 
-                        <div>
-                            <div className="frame " >
-                                <div className="center card p-5 m-1 shadow">
-                                    <div className="title pb-2">
-                                        <h1>Lipstick</h1>
-                                    </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <div className="title ">
+                                <h1>Lipstick Colors</h1>
+                            </div>
+                            <div className=" " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} >
+
+                                <div className="center card shadow m-1">
+
 
                                     <div className="dropzone ">
-                                        <MDBCardImage style={{ height: '250px', width: '250px' }}
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ06NJPcUDJbB9wdhEXbFdn3nH4fJOTAvYc_C6dXzXs1pBRgEWgmaiwdgz5Ux7AMIC7nPA&usqp=CAU"
-                                            position="top"
-                                        />
+
+                                        <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick1 }} />
                                     </div>
-                                    <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link>
+                                    {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
+                                </div>
+                                <div className="center card shadow m-1 ">
+                               
+                                    <div className="dropzone ">
+
+                                        <img src={lipstic} style={{ height: '180px', width: '180px',  backgroundColor: lipstick2 }} />
+                                    </div>
+                                    {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
+                                </div>
+                                <div className="center card shadow m-1">
+                                  
+                                    <div className="dropzone ">
+
+                                        <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick3 }} />
+                                    </div>
+                                    {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
                                 </div>
                             </div>
                         </div>

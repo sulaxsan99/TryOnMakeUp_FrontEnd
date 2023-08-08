@@ -40,7 +40,7 @@ function Login() {
                             localStorage.setItem("validtoken",res.data.userToken)
                             console.log(res.data.message);
                             toast.success(res.data.message);
-                            navigate('/home');
+                            navigate('/landing');
 
                         } else {
                             console.log('Unexpected response:', res);
