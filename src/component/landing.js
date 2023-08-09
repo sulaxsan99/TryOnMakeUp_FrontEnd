@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage } from "mdb-react-ui-kit";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import lipstic from './assests/LIPSTICK.PNG'
-
+import lipstic from './assests/LIPSTICK.PNG';
+import blushpic from './assests/blush.PNG'
+import Chatbot from './Chatbot';
 
 function Landing() {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ function Landing() {
     const [lipstick1, setlipstick1] = useState(null);
     const [lipstick2, setlipstick2] = useState(null);
     const [lipstick3, setlipstick3] = useState(null);
-
+    const [blush, setblushColor] = useState(null)
 
     useEffect(() => {
         console.log(localStorage.getItem("validtoken"))
@@ -61,7 +62,7 @@ function Landing() {
         try {
             const formData = new FormData();
             formData.append('file', selectImage);
-            const response = await axios.post('http://0373-34-70-204-233.ngrok.io/makeup', formData, { responseType: 'blob', })
+            const response = await axios.post('http://8f6d-34-124-244-119.ngrok.io/makeup', formData, { responseType: 'blob', })
 
             const blob = new Blob([response.data], { type: 'image/jpeg' });
             const imageUrl = URL.createObjectURL(blob);
@@ -69,16 +70,19 @@ function Landing() {
 
 
 
-            const re = await axios.post('http://0373-34-70-204-233.ngrok.io/makeup2', formData)
+            const re = await axios.post('http://8f6d-34-124-244-119.ngrok.io/makeup2', formData)
             console.log("respons reee----", re);
 
 
             const lipg = `rgb(${re.data.lipr1},${re.data.lipg1},${re.data.lipb1})`;
             const lipb = `rgb(${re.data.lipr2},${re.data.lipg2},${re.data.lipb2})`;
             const lipr = `rgb(${re.data.lipr3},${re.data.lipg3},${re.data.lipb3})`;
+            const rush = `rgb(${re.data.blushR},${re.data.blushG},${re.data.blushB})`;
+
             setlipstick1(lipg)
             setlipstick2(lipb)
             setlipstick3(lipr)
+            setblushColor(rush)
             // console.log(lip)
         } catch (error) {
             console.log(error)
@@ -205,15 +209,15 @@ function Landing() {
                                     {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
                                 </div>
                                 <div className="center card shadow m-1 ">
-                               
+
                                     <div className="dropzone ">
 
-                                        <img src={lipstic} style={{ height: '180px', width: '180px',  backgroundColor: lipstick2 }} />
+                                        <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick2 }} />
                                     </div>
                                     {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
                                 </div>
                                 <div className="center card shadow m-1">
-                                  
+
                                     <div className="dropzone ">
 
                                         <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick3 }} />
@@ -226,10 +230,27 @@ function Landing() {
 
 
                     </MDBCard >
+
+
+                    <MDBCard>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <div className="title ">
+                                <h1>Blush Colors</h1>
+                            </div>
+                            <div className="center card shadow m-1">
+
+                                <div className="dropzone ">
+
+                                <img src={blushpic} style={{ height: '180px', width: '180px', backgroundColor: blush }} />
+                                </div>
+                                {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
+                            </div>
+                        </div>
+                    </MDBCard>
                 </MDBCol>
 
             </MDBRow >
-
+<Chatbot />
         </MDBContainer >
 
 
