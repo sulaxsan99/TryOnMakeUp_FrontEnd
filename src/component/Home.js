@@ -12,29 +12,34 @@ function Home2() {
     const navigate = useNavigate();
     return (
         <div >
-         <div className='row'>
-         <h3 style={{color:'black',textAlign:"center",marginTop:'10px',fontWeight:"800"}}>Try On Make Up</h3>
+            <div className='row ' >
+                <h3 style={{ color: 'black', textAlign: "center", marginTop: '10px', fontWeight: "800" }}>Try On Make Up</h3>
             </div>
-            <div className='row m-5'>
-                <div className='col-lg-8 text-dark  mb-5 ' style={{display:'flex', flexDirection:"column",}}>
-                    <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2022/02/11183032/CtFRRyg7ekq5Jd4jizS2WZ-2-1600x900.jpg?tr=w-1366" className="mt-5" style={{}} alt="Responsive image" />
+            <div className='row ' style={{}}>
+                <div className='col-lg-8 text-dark' style={{ display: 'flex', flexDirection: "column", alignItems: "center",height:'90%'}}>
+                    <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2022/02/11183032/CtFRRyg7ekq5Jd4jizS2WZ-2-1600x900.jpg?tr=w-1366" className="" style={{ height: "90%", width: '100%' }} alt="Responsive image" />
                 </div>
-                <div className='col-lg-4 text-dark '  style={{backgroundColor:'#9CA8B2'}}>
-                
-                    <p className='text-white  para m-3' style={{fontSize:'20px',}}> 
-                    
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fermentum id turpis id porttitor.
-                        In eget efficitur enim. Pellentesque fringilla ex vitae est facilisis, nec dignissim metus pellentesque.
-                        Nam commodo est maximus arcu tincidunt interdum. In fringilla, sapien ut ultrices gravida, libero dolor auctor enim,
-                        ut commodo urna leo ac eros. Suspendisse tristique nibh neque, ut tincidunt sem bibendum feugiat. Fusce imperdiet nisi quis neque bibendum condimentum.
-                        Morbi luctus orci nec lectus posuere pretium. Mauris sollicitudin lacus at velit auctor, a eleifend elit interdum. Praesent elit dolor, tempus in tellus id,
-                        luctus iaculis tellus. Maecenas molestie tortor at euismod iaculis. In maximus eros ac nulla blandit, in tincidunt est euismod.
-                        <button onClick={()=>  navigate('/login')} className='btn btn-dark mt-4'> Continue </button>
-                    </p>
+                <div className='col-lg-4 text-dark ' style={{ display: 'flex', flexDirection: "column",alignItems:"center",backgroundColor: '#9CA8B2' }}>
+                    <div >
+                        <p className='text-white  para' style={{ fontSize: '17px', }}>
+
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur fermentum id turpis id porttitor.
+                            In eget efficitur enim. Pellentesque fringilla ex vitae est facilisis, nec dignissim metus pellentesque.
+                            Nam commodo est maximus arcu tincidunt interdum. In fringilla, sapien ut ultrices gravida, libero dolor auctor enim,
+                            ut commodo urna leo ac eros. Suspendisse tristique nibh neque, ut tincidunt sem bibendum feugiat. Fusce imperdiet nisi quis neque bibendum condimentum.
+                            Morbi luctus orci nec lectus posuere pretium. Mauris sollicitudin lacus at velit auctor, a eleifend elit interdum. Praesent elit dolor, tempus in tellus id,
+                            luctus iaculis tellus. Maecenas molestie tortor at euismod iaculis. In maximus eros ac nulla blandit, in tincidunt est euismod.
+                         <div>
+                         <p onClick={() => navigate('/login')} className='btn btn-dark mt-2'> Continue </p>
+
+                         </div>
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
-            <MDBContainer fluid className="px-5  prod" style={{marginTop:'20PX'}}>
+            <MDBContainer fluid className="px-5  prod" style={{ marginTop: '20PX' }}>
                 <h1 className='mb-5 text-dark'>Products</h1>
                 <MDBRow>
 
