@@ -242,3 +242,11 @@ figure.effect-dexter:hover p {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
+
+.para {
+	padding-bottom: 6px;
+}
+
+.prod {
+	margin-top: -120px;
+}

@@ -62,7 +62,7 @@ function Landing() {
         try {
             const formData = new FormData();
             formData.append('file', selectImage);
-            const response = await axios.post('http://8f6d-34-124-244-119.ngrok.io/makeup', formData, { responseType: 'blob', })
+            const response = await axios.post(' http://78ed-34-91-120-226.ngrok.io/makeup', formData, { responseType: 'blob', })
 
             const blob = new Blob([response.data], { type: 'image/jpeg' });
             const imageUrl = URL.createObjectURL(blob);
@@ -70,7 +70,7 @@ function Landing() {
 
 
 
-            const re = await axios.post('http://8f6d-34-124-244-119.ngrok.io/makeup2', formData)
+            const re = await axios.post(' http://78ed-34-91-120-226.ngrok.io/makeup2', formData)
             console.log("respons reee----", re);
 
 
@@ -94,7 +94,7 @@ function Landing() {
         <MDBContainer fluid >
             <nav class="navbar bg-dark-subtle mb-5 ">
                 <form class="container-fluid justify-content-around ">
-                    <h1 className=' my-1 text-dark'>Image Processing</h1>
+                    <h1 className=' my-1 text-dark'>Try On MakeUp</h1>
                     <button class="btn btn-sm btn-outline-dark" type="button" onClick={() => {
                         localStorage.clear();
                         navigate('/')
@@ -191,7 +191,7 @@ function Landing() {
                 </MDBCol>
 
                 <MDBCol md="12" lg="6" className="mb-5 " >
-                    <MDBCard className='shadow'>
+                    <MDBCard className='shadow m-2'>
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div className="title ">
@@ -232,8 +232,8 @@ function Landing() {
                     </MDBCard >
 
 
-                    <MDBCard>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <MDBCard className='m-2'>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                             <div className="title ">
                                 <h1>Blush Colors</h1>
                             </div>

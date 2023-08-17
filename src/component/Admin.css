@@ -1,0 +1,29 @@
+.admin {
+    /* display: flex; */
+    width: 100%;
+    color: black;
+    height: 100vh;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* border: 2px solid black; */
+
+
+}
+
+ h1 {
+    text-align: center;
+
+}
+.container{
+    display: flex;
+height: 100%;
+}
+.products{
+flex: 1;
+background-color: aquamarine;
+}
+
+.ViewProducts{
+    flex: 1;
+    background-color: bisque;
+}
