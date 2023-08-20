@@ -26,8 +26,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">10 Pcs</span>
                                 </p>
                             </div>
@@ -52,8 +52,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">50 Pcs</span>
                                 </p>
                             </div>
@@ -76,8 +76,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">06 Pcs</span>
                                 </p>
                             </div>
@@ -100,8 +100,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">20 Pcs</span>
                                 </p>
                             </div>
@@ -124,8 +124,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">08 Pcs</span>
                                 </p>
                             </div>
@@ -148,8 +148,8 @@ function Products() {
 
                             </div>
 
-                            <div class="d-flex justify-content-between mb-2">
-                                <p class="text-muted mb-0">
+                            <div className="d-flex justify-content-between mb-2">
+                                <p className="text-muted mb-0">
                                     Available: <span class="fw-bold">350 Pcs</span>
                                 </p>
                             </div>

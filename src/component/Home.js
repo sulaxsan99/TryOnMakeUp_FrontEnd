@@ -19,7 +19,7 @@ function Home2() {
                 <div className='col-lg-8 text-dark' style={{ display: 'flex', flexDirection: "column", alignItems: "center",height:'90%'}}>
                     <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2022/02/11183032/CtFRRyg7ekq5Jd4jizS2WZ-2-1600x900.jpg?tr=w-1366" className="" style={{ height: "90%", width: '100%' }} alt="Responsive image" />
                 </div>
-                <div className='col-lg-4 text-dark ' style={{ display: 'flex', flexDirection: "column",alignItems:"center",backgroundColor: '#9CA8B2' }}>
+                <div className='col-lg-4 text-dark ' style={{ display: 'flex', flexDirection: "column",alignItems:"center",backgroundColor: '#9CA8B2'  }}>
                     <div >
                         <p className='text-white  para' style={{ fontSize: '17px', }}>
 
@@ -30,7 +30,7 @@ function Home2() {
                             Morbi luctus orci nec lectus posuere pretium. Mauris sollicitudin lacus at velit auctor, a eleifend elit interdum. Praesent elit dolor, tempus in tellus id,
                             luctus iaculis tellus. Maecenas molestie tortor at euismod iaculis. In maximus eros ac nulla blandit, in tincidunt est euismod.
                          <div>
-                         <p onClick={() => navigate('/login')} className='btn btn-dark mt-2'> Continue </p>
+                         <p onClick={() => navigate('/login')} className='btn btn-dark mt-2'> Try Here... </p>
 
                          </div>
                         </p>
@@ -58,8 +58,8 @@ function Home2() {
 
                                 </div>
 
-                                <div class="d-flex justify-content-between mb-2">
-                                    <p class="text-muted mb-0">
+                                <div className="d-flex justify-content-between mb-2">
+                                    <p className="text-muted mb-0">
                                         Available: <span class="fw-bold">10 Pcs</span>
                                     </p>
                                 </div>
@@ -84,8 +84,8 @@ function Home2() {
 
                                 </div>
 
-                                <div class="d-flex justify-content-between mb-2">
-                                    <p class="text-muted mb-0">
+                                <div className="d-flex justify-content-between mb-2">
+                                    <p className="text-muted mb-0">
                                         Available: <span class="fw-bold">50 Pcs</span>
                                     </p>
                                 </div>
@@ -108,8 +108,8 @@ function Home2() {
 
                                 </div>
 
-                                <div class="d-flex justify-content-between mb-2">
-                                    <p class="text-muted mb-0">
+                                <div className="d-flex justify-content-between mb-2">
+                                    <p className="text-muted mb-0">
                                         Available: <span class="fw-bold">06 Pcs</span>
                                     </p>
                                 </div>

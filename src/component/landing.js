@@ -92,10 +92,10 @@ function Landing() {
     return (
 
         <MDBContainer fluid >
-            <nav class="navbar bg-dark-subtle mb-5 ">
-                <form class="container-fluid justify-content-around ">
+            <nav className ="navbar bg-dark-subtle mb-5 ">
+                <form className="container-fluid justify-content-around ">
                     <h1 className=' my-1 text-dark'>Try On MakeUp</h1>
-                    <button class="btn btn-sm btn-outline-dark" type="button" onClick={() => {
+                    <button className="btn btn-sm btn-outline-dark" type="button" onClick={() => {
                         localStorage.clear();
                         navigate('/')
                     }} >Log out</button>

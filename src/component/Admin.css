@@ -15,7 +15,7 @@
 
 }
 .container{
-    display: flex;
+    /* display: flex; */
 height: 100%;
 }
 .products{
@@ -27,3 +27,26 @@ background-color: aquamarine;
     flex: 1;
     background-color: bisque;
 }
+
+.delete{
+    background-color: red;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: 600;
+}
+.delete:hover{
+background-color: rgb(68, 7, 7);
+}
+.update{
+    background-color: rgb(36, 87, 226);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: 600;
+}
+.update:hover{
+    background-color: rgb(1, 14, 129);
+    }
