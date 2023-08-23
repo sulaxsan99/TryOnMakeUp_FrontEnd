@@ -50,3 +50,14 @@ background-color: rgb(68, 7, 7);
 .update:hover{
     background-color: rgb(1, 14, 129);
     }
+
+    .forgot-password{
+        margin-top: 10px;
+        color: blue;
+        font-size: small;
+        text-decoration: none;
+    }
+    .forgot-password :hover{
+        color: #4c00ff;
+        cursor: pointer;
+    }

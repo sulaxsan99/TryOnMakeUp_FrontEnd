@@ -19,22 +19,23 @@ function Admin() {
     const navigate = useNavigate();
 
     const [show, setShow] = useState(false);
-const [updatepro,setupdatepro] =useState([])
+    const [updatepro, setupdatepro] = useState([])
+    const [updatepro1, setupdatepro1] = useState([])
     const handleClose = () => setShow(false);
-    const handleShow = async(id) =>{
+    const handleShow = async (id) => {
         setShow(true);
         try {
             await axios.get(`http://localhost:5000/api/admin/singlePro/${id}`).then((res) => {
                 console.log(res.data)
                 setupdatepro(res.data.oneproduct)
-
+                setupdatepro1(id)
             }).catch((err) => {
                 console.log(err)
             })
         } catch (error) {
             console.log(error)
         }
-       
+
     }
 
 
@@ -82,227 +83,232 @@ const [updatepro,setupdatepro] =useState([])
         getPRoduct();
     }, [])
     return (
-<>
-     <div className='admin' style={{}}>
-            <div className='container' >
-                <div className='products'>
-                    <Formik
-                    
-                        initialValues={{ name: '', Available: '', image: null }}
-                        validationSchema={validationSchema}
-                        onSubmit={(values, actions) => {
-                            // Simulate submitting form data to a server
-                            setTimeout(async () => {
-                                console.log('Form values:', values);
+        <>
+            <div className='admin' style={{}}>
+                <div className='container' >
+                    <div className='products'>
+                        <Formik
 
-                                try {
-                                    const formData = new FormData();
-                                    formData.append('name', values.name);
-                                    formData.append('Available', values.Available);
-                                    formData.append('image', values.image);
-                                    await axios.post('http://localhost:5000/api/admin/', formData, {
-                                        headers: {
-                                            'Content-Type': 'multipart/form-data', // Important for file uploads
-                                        },
-                                    }).then((res) => {
-                                        console.log(res)
-                                        actions.resetForm();
-                                        window.alert("kjfkfr")
-                                    }).catch((err) => {
-                                        console.log(err)
+                            initialValues={{ name: '', Available: '', image: null }}
+                            validationSchema={validationSchema}
+                            onSubmit={(values, actions) => {
+                                // Simulate submitting form data to a server
+                                setTimeout(async () => {
+                                    console.log('Form values:', values);
 
-                                    })
-                                } catch (error) {
-                                    console.log(error)
+                                    try {
+                                        const formData = new FormData();
+                                        formData.append('name', values.name);
+                                        formData.append('Available', values.Available);
+                                        formData.append('image', values.image);
+                                        await axios.post('http://localhost:5000/api/admin/', formData, {
+                                            headers: {
+                                                'Content-Type': 'multipart/form-data', // Important for file uploads
+                                            },
+                                        }).then((res) => {
+                                            console.log(res)
+                                            toast.success(res.data);
+
+                                            actions.resetForm();
+                                            window.alert("kjfkfr")
+                                            window.location.reload();
+                                            // navigate('/admin')
+                                        }).catch((err) => {
+                                            console.log(err)
+                                            toast.error(err.response.data);
+                                        })
+                                    } catch (error) {
+                                        console.log(error)
+                                    }
+
+                                    actions.setSubmitting(false);
+                                }, 1000);
+                            }}
+                        >
+                            {({ setFieldValue, isSubmitting, resetForm }) => (
+                                <Form className='m-5'>
+                                    <div>
+                                        <label htmlFor="name">Name</label>
+                                        <Field type="text" id="name" name="name" className="form-control" />
+                                        <ErrorMessage name="name" className='h6 text-danger' component="div" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="Available">Available</label>
+                                        <Field type="number" id="Available" name="Available" className="form-control" />
+                                        <ErrorMessage name="Available" className='h6 text-danger' component="div" />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="image">Image</label>
+                                        <input
+                                            type="file"
+                                            className="form-control"
+                                            id="image"
+                                            name="image"
+                                            onChange={(event) => {
+                                                const file = event.target.files[0];
+                                                setFieldValue('image', file);
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    reader.onloadend = () => {
+                                                        setSelectedImage(reader.result);
+                                                    };
+                                                    reader.readAsDataURL(file);
+                                                }
+                                            }}
+                                        />
+                                        <ErrorMessage name="image" className='h6 text-danger' component="div" />
+                                    </div>
+
+                                    {selectedImage && <img src={selectedImage} alt="Selected" style={{ width: '200px', marginTop: '10px' }} />}
+
+                                    <button type="submit" disabled={isSubmitting} className="btn btn-outline-primary mt-3" >
+                                        {isSubmitting ? 'Adding...' : 'Add Product'}
+                                    </button>
+                                </Form>
+                            )}
+                        </Formik>
+
+                    </div>
+                    <div className='ViewProducts'>
+                        <h1>
+                            Products
+                        </h1>
+
+                        <MDBContainer fluid className="px-5  prod" style={{ marginTop: '20PX' }}>
+                            <MDBRow>
+
+                                {
+                                    AllProducts.map((item, index) => (
+                                        <MDBCol md="3" className="mb-lg-0" key={item._id}>
+                                            <MDBCard className='shadow '>
+
+
+                                                <MDBCardBody style={{}}>
+                                                    <MDBCardImage style={{ height: '100px', width: '100px' }}
+                                                        src={`../../../Backend/products/C7A002BD-0A6E-4146-B260-DDBECF8282C3.PNG`}
+                                                        position="top"
+                                                    />
+                                                    <div>
+                                                        <p>
+                                                            {item.name}
+                                                        </p>
+                                                        <p >
+                                                            Available: <span class="fw-bold">{item.Available}</span>
+                                                        </p>
+                                                        <p className='delete' onClick={() => deleteProduct(item._id)} >Delete</p>
+                                                        <Button className='update' onClick={() => handleShow(item._id)} >Update</Button>
+                                                        <Modal show={show} onHide={handleClose}>
+                                                            <Modal.Header closeButton>
+                                                                <Modal.Title>Update product</Modal.Title>
+                                                            </Modal.Header>
+                                                            <Modal.Body>
+                                                                <Formik
+                                                                    initialValues={{ name: updatepro.name, Available: updatepro.Available, image: updatepro.image }}
+                                                                    validationSchema={validationSchema}
+                                                                    onSubmit={(values, actions) => {
+                                                                        // Simulate submitting form data to a server
+                                                                        setTimeout(async () => {
+                                                                            console.log('Form values:', values);
+
+                                                                            try {
+                                                                                const formData = new FormData();
+                                                                                formData.append('name', values.name);
+                                                                                formData.append('Available', values.Available);
+                                                                                formData.append('image', values.image);
+                                                                                await axios.put(`http://localhost:5000/api/admin/update/${updatepro1}`, values, {
+                                                                                    headers: {
+                                                                                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                                                                                    },
+                                                                                }).then((res) => {
+                                                                                    console.log(res)
+                                                                                    actions.resetForm();
+                                                                                    window.location.reload();
+
+                                                                                }).catch((err) => {
+                                                                                    console.log(err)
+
+                                                                                })
+                                                                            } catch (error) {
+                                                                                console.log(error)
+                                                                            }
+
+                                                                            actions.setSubmitting(false);
+                                                                        }, 1000);
+                                                                    }}
+                                                                >
+                                                                    {({ setFieldValue, isSubmitting, resetForm }) => (
+                                                                        <Form className='m-5'>
+                                                                            <div>
+                                                                                <label htmlFor="name">Name</label>
+                                                                                <Field type="text" id="name" name="name" className="form-control" />
+                                                                                <ErrorMessage name="name" className='h6 text-danger' component="div" />
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="Available">Available</label>
+                                                                                <Field type="number" id="Available" name="Available" className="form-control" />
+                                                                                <ErrorMessage name="Available" className='h6 text-danger' component="div" />
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <label htmlFor="image">Image</label>
+                                                                                <input
+                                                                                    type="file"
+                                                                                    className="form-control"
+                                                                                    id="image"
+                                                                                    name="image"
+                                                                                    onChange={(event) => {
+                                                                                        const file = event.target.files[0];
+                                                                                        setFieldValue('image', file);
+                                                                                        if (file) {
+                                                                                            const reader = new FileReader();
+                                                                                            reader.onloadend = () => {
+                                                                                                setSelectedImage(reader.result);
+                                                                                            };
+                                                                                            reader.readAsDataURL(file);
+                                                                                        }
+                                                                                    }}
+                                                                                />
+                                                                                <ErrorMessage name="image" className='h6 text-danger' component="div" />
+                                                                            </div>
+
+                                                                            {selectedImage && <img src={selectedImage} alt="Selected" style={{ width: '200px', marginTop: '10px' }} />}
+
+                                                                            <button type="submit" disabled={isSubmitting} className="btn btn-outline-primary mt-3" >
+                                                                                {isSubmitting ? 'Adding...' : 'Add Product'}
+                                                                            </button>
+                                                                        </Form>
+                                                                    )}
+                                                                </Formik>
+                                                            </Modal.Body>
+                                                            <Modal.Footer>
+                                                                <Button variant="secondary" onClick={handleClose}>
+                                                                    Close
+                                                                </Button>
+                                                                <Button variant="primary" onClick={handleClose}>
+                                                                    Save Changes
+                                                                </Button>
+                                                            </Modal.Footer>
+                                                        </Modal>
+                                                    </div>
+
+                                                </MDBCardBody>
+                                            </MDBCard >
+                                        </MDBCol>
+                                    ))
                                 }
 
-                                actions.setSubmitting(false);
-                            }, 1000);
-                        }}
-                    >
-                        {({ setFieldValue, isSubmitting, resetForm }) => (
-                            <Form className='m-5'>
-                                <div>
-                                    <label htmlFor="name">Name</label>
-                                    <Field type="text" id="name" name="name" className="form-control" />
-                                    <ErrorMessage name="name" className='h6 text-danger' component="div" />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="Available">Available</label>
-                                    <Field type="number" id="Available" name="Available" className="form-control" />
-                                    <ErrorMessage name="Available" className='h6 text-danger' component="div" />
-                                </div>
-
-                                <div>
-                                    <label htmlFor="image">Image</label>
-                                    <input
-                                        type="file"
-                                        className="form-control"
-                                        id="image"
-                                        name="image"
-                                        onChange={(event) => {
-                                            const file = event.target.files[0];
-                                            setFieldValue('image', file);
-                                            if (file) {
-                                                const reader = new FileReader();
-                                                reader.onloadend = () => {
-                                                    setSelectedImage(reader.result);
-                                                };
-                                                reader.readAsDataURL(file);
-                                            }
-                                        }}
-                                    />
-                                    <ErrorMessage name="image" className='h6 text-danger' component="div" />
-                                </div>
-
-                                {selectedImage && <img src={selectedImage} alt="Selected" style={{ width: '200px', marginTop: '10px' }} />}
-
-                                <button type="submit" disabled={isSubmitting} className="btn btn-outline-primary mt-3" >
-                                    {isSubmitting ? 'Adding...' : 'Add Product'}
-                                </button>
-                            </Form>
-                        )}
-                    </Formik>
-
-                </div>
-                <div className='ViewProducts'>
-                    <h1>
-                        Products
-                    </h1>
-
-                    <MDBContainer fluid className="px-5  prod" style={{ marginTop: '20PX' }}>
-                        <MDBRow>
-
-                            {
-                                AllProducts.map((item, index) => (
-                                    <MDBCol md="3" className="mb-lg-0" key={item._id}>
-                                        <MDBCard className='shadow '>
 
 
-                                            <MDBCardBody style={{}}>
-                                                <MDBCardImage style={{ height: '100px', width: '100px' }}
-                                                    src={`../../../Backend/products/C7A002BD-0A6E-4146-B260-DDBECF8282C3.PNG`}
-                                                    position="top"
-                                                />
-                                                <div>
-                                                    <p>
-                                                        {item.name}
-                                                    </p>
-                                                    <p >
-                                                        Available: <span class="fw-bold">{item.Available}</span>
-                                                    </p>
-                                                    <p className='delete' onClick={() => deleteProduct(item._id)} >Delete</p>
-                                                    <Button className='update' onClick={()=>handleShow(item._id)} >Update</Button>
-                                                    <Modal show={show} onHide={handleClose}>
-                                                        <Modal.Header closeButton>
-                                                            <Modal.Title>Update product</Modal.Title>
-                                                        </Modal.Header>
-                                                        <Modal.Body>
-                                                            <Formik
-                                                                initialValues={{ name:updatepro.name , Available: updatepro.Available, image: updatepro.image }}
-                                                                validationSchema={validationSchema}
-                                                                onSubmit={(values, actions) => {
-                                                                    // Simulate submitting form data to a server
-                                                                    setTimeout(async () => {
-                                                                        console.log('Form values:', values);
-
-                                                                        try {
-                                                                            const formData = new FormData();
-                                                                            formData.append('name', values.name);
-                                                                            formData.append('Available', values.Available);
-                                                                            formData.append('image', values.image);
-                                                                            await axios.post(`http://localhost:5000/api/admin/update/${updatepro._ID}`, formData, {
-                                                                                headers: {
-                                                                                    'Content-Type': 'multipart/form-data', // Important for file uploads
-                                                                                },
-                                                                            }).then((res) => {
-                                                                                console.log(res)
-                                                                                actions.resetForm();
-                                                                                window.alert("kjfkfr")
-                                                                            }).catch((err) => {
-                                                                                console.log(err)
-
-                                                                            })
-                                                                        } catch (error) {
-                                                                            console.log(error)
-                                                                        }
-
-                                                                        actions.setSubmitting(false);
-                                                                    }, 1000);
-                                                                }}
-                                                            >
-                                                                {({ setFieldValue, isSubmitting, resetForm }) => (
-                                                                    <Form className='m-5'>
-                                                                        <div>
-                                                                            <label htmlFor="name">Name</label>
-                                                                            <Field type="text" id="name" name="name" className="form-control" />
-                                                                            <ErrorMessage name="name" className='h6 text-danger' component="div" />
-                                                                        </div>
-
-                                                                        <div>
-                                                                            <label htmlFor="Available">Available</label>
-                                                                            <Field type="number" id="Available" name="Available" className="form-control" />
-                                                                            <ErrorMessage name="Available" className='h6 text-danger' component="div" />
-                                                                        </div>
-
-                                                                        <div>
-                                                                            <label htmlFor="image">Image</label>
-                                                                            <input
-                                                                                type="file"
-                                                                                className="form-control"
-                                                                                id="image"
-                                                                                name="image"
-                                                                                onChange={(event) => {
-                                                                                    const file = event.target.files[0];
-                                                                                    setFieldValue('image', file);
-                                                                                    if (file) {
-                                                                                        const reader = new FileReader();
-                                                                                        reader.onloadend = () => {
-                                                                                            setSelectedImage(reader.result);
-                                                                                        };
-                                                                                        reader.readAsDataURL(file);
-                                                                                    }
-                                                                                }}
-                                                                            />
-                                                                            <ErrorMessage name="image" className='h6 text-danger' component="div" />
-                                                                        </div>
-
-                                                                        {selectedImage && <img src={selectedImage} alt="Selected" style={{ width: '200px', marginTop: '10px' }} />}
-
-                                                                        <button type="submit" disabled={isSubmitting} className="btn btn-outline-primary mt-3" >
-                                                                            {isSubmitting ? 'Adding...' : 'Add Product'}
-                                                                        </button>
-                                                                    </Form>
-                                                                )}
-                                                            </Formik>
-                                                        </Modal.Body>
-                                                        <Modal.Footer>
-                                                            <Button variant="secondary" onClick={handleClose}>
-                                                                Close
-                                                            </Button>
-                                                            <Button variant="primary" onClick={handleClose}>
-                                                                Save Changes
-                                                            </Button>
-                                                        </Modal.Footer>
-                                                    </Modal>
-                                                </div>
-
-                                            </MDBCardBody>
-                                        </MDBCard >
-                                    </MDBCol>
-                                ))
-                            }
-
-
-
-                        </MDBRow>
-                    </MDBContainer>
+                            </MDBRow>
+                        </MDBContainer>
+                    </div>
                 </div>
             </div>
-        </div>
-</>
-       
+        </>
+
     )
 }
 

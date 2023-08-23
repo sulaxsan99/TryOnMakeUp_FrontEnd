@@ -180,9 +180,7 @@ function Landing() {
                                         )}
                                     </div>
 
-                                    <div className="dropzone pb-5 mb-2">
-                                        <button type="button" className="btn btn-outline-dark mt-4 ">Download Image</button>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -195,7 +193,7 @@ function Landing() {
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div className="title ">
-                                <h1>Lipstick Colors</h1>
+                                <h1 >Lipstick Colors</h1>
                             </div>
                             <div className=" " style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }} >
 
@@ -204,7 +202,8 @@ function Landing() {
 
                                     <div className="dropzone ">
 
-                                        <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick1 }} />
+<Link to="/products">
+                                        <img src={lipstic} style={{ height: '180px', width: '180px', backgroundColor: lipstick1 }} /></Link>
                                     </div>
                                     {/* <Link to="/products" style={{ textDecoration: 'none' }}> <button className="btn btn-outline-dark mt-3 mx-2">More Products</button> </Link> */}
                                 </div>

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 // import { Register } from './AxiosApi/FetchCalls';
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import './Admin.css'
 function Login() {
 
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Login() {
                         axios.post('http://localhost:5000/api/user/login', values).then((res) => {
                             if (res && res.data) {
                                 localStorage.setItem("validtoken", res.data.userToken)
-                                console.log(res.data.message);
+                                console.log(res);
                                 toast.success(res.data.message);
                                 navigate('/landing');
 
@@ -87,7 +88,17 @@ function Login() {
                             <div className="form-group">
                                 <button type="submit" onSubmit={onsubmit} className="btn btn-outline-primary mt-3">login</button>
                                 <Link to="/signup" style={{ textDecoration: 'none' }}> <button type="submit" href="signup" className="btn btn-outline-secondary mt-3 mx-2">Signup</button> </Link>
+
+                                <div>
+                                <Link to="/ForgotPassword">
+                                <h6  className='forgot-password' >
+                                   forgot password
+                                   </h6>
+                                </Link>
+                                  
+                                </div>
                             </div>
+                        
                         </Form>
                     )
                 }

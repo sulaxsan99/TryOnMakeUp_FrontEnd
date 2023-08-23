@@ -9,6 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import Admin from './component/Admin';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectRoute from './ProtectRoute';
+import ForgotPassword from './component/ForgotPassword';
+import ResetPassword from './component/ResetPassword';
 // import 'react-hot-toast/dist/index.css'; // Import the CSS for toast styles
 
 
@@ -25,6 +27,9 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/home" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/ForgotPassword" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+
             {/* <ProtectRoute path="/home"   component={<Landing />} />
             <ProtectRoute path="/products" component={<Products />} /> */}
             <Route  path="/" element={<Home />} />

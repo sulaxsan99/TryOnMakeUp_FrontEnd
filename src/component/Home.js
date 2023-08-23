@@ -13,7 +13,7 @@ function Home2() {
     return (
         <div >
             <div className='row ' >
-                <h3 style={{ color: 'black', textAlign: "center", marginTop: '10px', fontWeight: "800" }}>Try On Make Up</h3>
+                <h3 style={{ color: 'black', textAlign: "center", marginTop: '10px', fontWeight: "800" ,fontFamily:"fantasy"}}>Try On Make Up</h3>
             </div>
             <div className='row ' style={{}}>
                 <div className='col-lg-8 text-dark' style={{ display: 'flex', flexDirection: "column", alignItems: "center",height:'90%'}}>
