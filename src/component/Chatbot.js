@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 function Chatbot() {
     useEffect(() => {
         window.__be = window.__be || {};
-        window.__be.id = "64e747c2c158e1000731fca9";
+        window.__be.id = "64ea24a7c8b1260007ee8ff1";
 
         const script = document.createElement('script');
         script.type = 'text/javascript';

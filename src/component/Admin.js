@@ -68,6 +68,7 @@ function Admin() {
         try {
             await axios.delete(`http://localhost:5000/api/admin/deleteProduct/${id}`).then((res) => {
                 console.log(res)
+                window.location.reload();
             }).catch((err) => {
                 console.log(err)
             })
@@ -110,8 +111,10 @@ function Admin() {
                                             toast.success(res.data);
 
                                             actions.resetForm();
-                                            window.alert("kjfkfr")
-                                            window.location.reload();
+                                            setTimeout(() => {
+                                                window.location.reload();
+                                            }, 5000);
+                                           
                                             // navigate('/admin')
                                         }).catch((err) => {
                                             console.log(err)
@@ -187,7 +190,9 @@ function Admin() {
 
                                                 <MDBCardBody style={{}}>
                                                     <MDBCardImage style={{ height: '100px', width: '100px' }}
-                                                        src={`../../../Backend/products/C7A002BD-0A6E-4146-B260-DDBECF8282C3.PNG`}
+                                        
+                                                        // src="../../../Backend/products/C7A002BD-0A6E-4146-B260-DDBECF8282C3.PNG"
+                                                        src=''
                                                         position="top"
                                                     />
                                                     <div>
